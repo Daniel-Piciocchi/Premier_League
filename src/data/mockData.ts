@@ -1,4 +1,4 @@
-import { LeaugeTableRow, TeamStatus, LeaugeTableConfig} from './types';
+import { LeaugeTableRow, TeamStatus, LeaugeTableConfig} from "./types";
 
 /**
  * Mock data based on premier League Table
