@@ -1,5 +1,6 @@
 // src/components/LeagueTable/TableRow.tsx
 
+import { motion } from 'framer-motion'
 import { type LeagueTableRow, TeamStatus } from '../../data/types'
 import Last5Badge from './Last5Badge'
 
@@ -27,7 +28,12 @@ const TableRow: React.FC<TableRowProps> = ({ team, onClubClick }) => {
     }
 
     return (
-        <div
+        <motion.div
+            whileHover={{
+                y: -2,
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                transition: { duration: 0.2 },
+            }}
             className={`flex border-b border-gray-200 transition-colors min-w-max ${getRowBackgroundColor()}`}
         >
             {/* Position - Sticky */}
@@ -35,11 +41,11 @@ const TableRow: React.FC<TableRowProps> = ({ team, onClubClick }) => {
                 {team.position}
             </div>
 
-            {/* Club - Sticky - WITH LOGO */}
-            <div className="sticky left-[86px] z-10 bg-inherit px-3 md:px-4 py-3 border-r-2 border-gray-300 w-[120px] md:w-[180px] flex-shrink-0 text-xs md:text-sm">
+            {/* Club - Sticky - WITH LOGO - ALIGNED */}
+            <div className="sticky left-[86px] z-10 bg-inherit px-3 md:px-4 py-3 border-r-2 border-gray-300 w-[120px] md:w-[180px] flex-shrink-0 text-xs md:text-sm flex items-center">
                 <button
                     onClick={handleClubClick}
-                    className="text-blue-600 hover:text-blue-800 hover:underline font-medium text-left w-full truncate flex items-center gap-2"
+                    className="text-blue-600 hover:text-blue-800 hover:underline font-medium w-full flex items-center justify-center gap-2 transition-all"
                     title={team.club}
                 >
                     {/* Club Logo */}
@@ -49,12 +55,11 @@ const TableRow: React.FC<TableRowProps> = ({ team, onClubClick }) => {
                             alt={`${team.club} logo`}
                             className="w-5 h-5 md:w-6 md:h-6 rounded-full flex-shrink-0 object-cover"
                             onError={(e) => {
-                                // Fallback if image fails to load
                                 e.currentTarget.style.display = 'none'
                             }}
                         />
                     )}
-                    <span className="truncate">{team.club}</span>
+                    <span className="truncate leading-none">{team.club}</span>
                 </button>
             </div>
 
@@ -88,7 +93,7 @@ const TableRow: React.FC<TableRowProps> = ({ team, onClubClick }) => {
             <div className="px-3 py-3 w-[200px] flex-shrink-0">
                 <Last5Badge results={team.last5} />
             </div>
-        </div>
+        </motion.div>
     )
 }
 

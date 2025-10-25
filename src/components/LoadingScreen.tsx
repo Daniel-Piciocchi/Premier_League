@@ -32,7 +32,7 @@ const LoadingScreen: React.FC = () => {
                     transition={{ delay: 0.3, duration: 0.5 }}
                 >
                     <h2 className="text-white text-2xl font-bold mb-4">
-                        Loading League Table
+                        Loading Premier League Standings
                     </h2>
                     <p className="text-gray-100 text-lg mb-6">
                         Fetching the latest standings...
