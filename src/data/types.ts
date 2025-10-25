@@ -30,6 +30,7 @@ export interface LeagueTableRow {
     status: TeamStatus
     isClickable?: boolean // for teams with dedicated pages
     clubSlug?: string // url-friendly version for routing (example: "Liverpool")
+    clubLogo?: string
 }
 
 /**

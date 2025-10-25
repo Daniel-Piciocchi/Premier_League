@@ -1,68 +1,82 @@
 // src/App.tsx
 
-import { mockLeagueData, defaultTableConfig } from './data/mockData'
-import { validateTableRow } from './utils/teamHelpers'
+import { useState, useEffect } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { mockLeagueData } from './data/mockData'
+import { LeagueTable } from './components/LeagueTable'
+import LoadingScreen from './components/LoadingScreen'
 
 function App() {
-    // Quick validation check
-    const isDataValid = mockLeagueData.every(validateTableRow)
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        // Simulate data fetching
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 5000) // 2.5 seconds loading time
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    const handleClubClick = (slug: string) => {
+        console.log('Club clicked:', slug)
+        alert(`Navigating to: /club/${slug}`)
+    }
 
     return (
-        <div className="min-h-screen bg-gray-100 p-8">
-            <div className="max-w-4xl mx-auto">
-                <h1 className="text-3xl font-bold mb-4">
-                    League Table UI - Data Check
-                </h1>
-
-                <div className="bg-white rounded-lg shadow p-6 mb-4">
-                    <h2 className="text-xl font-semibold mb-2">
-                        Data Validation
-                    </h2>
-                    <p className="mb-2">
-                        Total Teams:{' '}
-                        <span className="font-bold">
-                            {mockLeagueData.length}
-                        </span>
-                    </p>
-                    <p className="mb-2">
-                        Data Valid:{' '}
-                        <span
-                            className={`font-bold ${
-                                isDataValid ? 'text-green-600' : 'text-red-600'
-                            }`}
-                        >
-                            {isDataValid ? '✓ Yes' : '✗ No'}
-                        </span>
-                    </p>
-                    <p>
-                        Relegation Zone Size:{' '}
-                        <span className="font-bold">
-                            {defaultTableConfig.relegationZoneSize}
-                        </span>
-                    </p>
-                </div>
-
-                <div className="bg-white rounded-lg shadow p-6">
-                    <h2 className="text-xl font-semibold mb-4">
-                        Sample Data (Top 5)
-                    </h2>
-                    <div className="space-y-2">
-                        {mockLeagueData.slice(0, 5).map((team) => (
-                            <div key={team.position} className="border-b pb-2">
-                                <p className="font-semibold">
-                                    {team.position}. {team.club}
-                                </p>
-                                <p className="text-sm text-gray-600">
-                                    Points: {team.points} | Status:{' '}
-                                    {team.status}
-                                    {team.isClickable && ' | 🔗 Clickable'}
+        <>
+            <AnimatePresence mode="wait">
+                {isLoading ? (
+                    <LoadingScreen key="loading" />
+                ) : (
+                    <motion.div
+                        key="content"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                        className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-4 md:p-8"
+                    >
+                        <div className="max-w-7xl mx-auto">
+                            {/* Header */}
+                            <div className="mb-6">
+                                <h1 className="text-4xl font-bold text-gray-800 mb-2">
+                                    Premier League Table
+                                </h1>
+                                <p className="text-gray-600">
+                                    Season 2024/25 • 25 matches played
                                 </p>
                             </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </div>
+
+                            {/* Legend */}
+                            <div className="bg-white rounded-lg shadow p-4 mb-6 flex flex-wrap gap-4 text-sm">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-4 h-4 bg-blue-100 border border-blue-200 rounded"></div>
+                                    <span>Champions League</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <div className="w-4 h-4 bg-red-100 border border-red-200 rounded"></div>
+                                    <span>Relegation Zone</span>
+                                </div>
+                            </div>
+
+                            {/* Table */}
+                            <LeagueTable
+                                teams={mockLeagueData}
+                                onClubClick={handleClubClick}
+                            />
+
+                            {/* Footer note */}
+                            <div className="mt-6 text-center text-sm text-gray-500">
+                                <p>
+                                    Scroll horizontally and vertically to view
+                                    all data
+                                </p>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
     )
 }
 

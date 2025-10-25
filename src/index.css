@@ -15,3 +15,46 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+/* Auto-hiding scrollbars */
+.custom-scrollbar {
+    scrollbar-color: rgba(156, 163, 175, 0.3) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.3);
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(156, 163, 175, 0.5);
+}
+
+/* Hide scrollbar by default, show on hover */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* For Firefox */
+.custom-scrollbar {
+    scrollbar-width: none;
+}
+
+.custom-scrollbar:hover {
+    scrollbar-width: thin;
+}
