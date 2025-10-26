@@ -8,7 +8,7 @@ const LoadingScreen: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-gradient-to-br from-[#E8365D] via-[#3B5EFF] to-[#E8365D] flex items-center justify-center z-50"
+            className="fixed inset-0 bg-gradient-to-br from-[#E8365D] via-[#3B5EFF] to-[#E8365D] flex items-center justify-center "
         >
             <div className="text-center">
                 {/* Premier League Logo - ORIGINAL COLORS */}
@@ -21,7 +21,7 @@ const LoadingScreen: React.FC = () => {
                     <img
                         src="https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg"
                         alt="Premier League"
-                        className="w-48 h-48 mx-auto drop-shadow-2xl"
+                        className="w-48 h-48 mx-auto drop--2xl"
                     />
                 </motion.div>
 
@@ -31,9 +31,9 @@ const LoadingScreen: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
                 >
-                    <h2 className="text-white text-2xl font-bold mb-4">
+                    <h4 className="text-white font-bold mb-4">
                         Fetching Premier League Standings...
-                    </h2>
+                    </h4>
                 </motion.div>
 
                 {/* Animated Dots */}
