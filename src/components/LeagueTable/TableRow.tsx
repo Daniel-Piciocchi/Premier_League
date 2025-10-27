@@ -55,6 +55,7 @@ const TableRow: React.FC<TableRowProps> = ({ team, onClubClick }) => {
                     >
                         <button
                             onClick={handleClubClick}
+                            aria-label={`View details for ${team.club}`}
                             className="text-blue-600 hover:text-blue-800 hover:underline font-medium w-full flex items-center justify-start gap-2 transition-colors"
                             title={team.club}
                         >
@@ -104,9 +105,19 @@ const TableRow: React.FC<TableRowProps> = ({ team, onClubClick }) => {
         }
     }
 
+    const handleKeyPress = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            handleClubClick()
+        }
+    }
+
     return (
         <div
-            className={`flex min-w-max transition-colors ${getRowBgClasses()}`}
+            role="row"
+            tabIndex={0}
+            onKeyDown={handleKeyPress}
+            className={`flex min-w-max transition-colors ${getRowBgClasses()} focus:outline-none focus:ring-2 focus:ring-blue-500`}
         >
             {COLUMNS.map(renderCell)}
         </div>

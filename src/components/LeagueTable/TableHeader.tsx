@@ -6,6 +6,10 @@ const TableHeader: React.FC = () => {
             {COLUMNS.map((column) => (
                 <div
                     key={column.key}
+                    role="columnheader"
+                    aria-sort={
+                        column.key === 'position' ? 'ascending' : undefined
+                    }
                     className={`
                         px-3 md:px-4 py-3 text-center flex-shrink-0 text-xs
                         ${column.width}

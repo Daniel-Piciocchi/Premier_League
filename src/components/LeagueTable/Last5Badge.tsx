@@ -12,12 +12,18 @@ const RESULT_CONFIG: Record<MatchResult, { color: string; label: string }> = {
 
 const Last5Badge: React.FC<Last5BadgeProps> = ({ results }) => {
     return (
-        <div className="flex gap-1 justify-center">
+        <div
+            className="flex gap-1 justify-center"
+            role="list"
+            aria-label="Last 5 matches"
+        >
             {results.map((result, index) => {
                 const config = RESULT_CONFIG[result]
                 return (
                     <div
                         key={index}
+                        role="listitem"
+                        aria-label={result}
                         className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${config.color}`}
                         title={result}
                     >

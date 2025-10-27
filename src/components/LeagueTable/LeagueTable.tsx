@@ -15,24 +15,31 @@ const LeagueTable: React.FC<LeagueTableProps> = ({
     scrollRef,
 }) => {
     return (
-        <div className="w-full max-w-fit bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
+        <div
+            className="w-full max-w-fit bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100"
+            role="table"
+            aria-label="Premier League Standings Table"
+        >
             <div
                 ref={scrollRef}
                 className="overflow-auto max-h-[600px] md:max-h-none custom-scrollbar"
             >
                 <div
                     className={`sticky top-0 ${Z_INDEX.STICKY_HEADER} bg-white`}
+                    role="rowgroup"
                 >
                     <TableHeader />
                 </div>
 
-                {teams.map((team) => (
-                    <TableRow
-                        key={team.position}
-                        team={team}
-                        onClubClick={onClubClick}
-                    />
-                ))}
+                <div role="rowgroup">
+                    {teams.map((team) => (
+                        <TableRow
+                            key={team.position}
+                            team={team}
+                            onClubClick={onClubClick}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     )
