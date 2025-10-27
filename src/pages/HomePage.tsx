@@ -8,7 +8,7 @@ import { LeagueTable } from '../components/LeagueTable'
 
 const HomePage: React.FC = () => {
     const navigate = useNavigate()
-    const scrollRef = useRef<HTMLDivElement>(null)
+    const scrollRef = useRef<HTMLDivElement>(null!)
 
     const handleClubClick = (slug: string) => {
         navigate(`/club/${slug}`)
@@ -38,9 +38,9 @@ const HomePage: React.FC = () => {
             <div className="max-w-7xl mx-auto">
                 <div className="w-full max-w-fit mx-auto">
                     {/* Header + Legend in one container (mobile + desktop) */}
-                    <div className="mb-6 relative rounded-lg overflow-visible">
+                    <div className="mb-4 relative rounded-lg overflow-visible">
                         <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-lg"></div>
-                        <div className="relative p-6 backdrop-blur rounded-lg shadow-[0_4px_12px_rgba(160,130,255,0.12)]">
+                        <div className="relative p-4 backdrop-blur rounded-lg shadow-[0_4px_12px_rgba(160,130,255,0.12)]">
                             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
                                 Premier League Standings
                             </h1>

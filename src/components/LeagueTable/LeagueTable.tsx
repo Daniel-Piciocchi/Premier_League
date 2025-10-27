@@ -17,7 +17,7 @@ const LeagueTable: React.FC<LeagueTableProps> = ({
 }) => {
     // ADD scrollRef here
     return (
-        <div className="w-full max-w-fit bg-white rounded-lg shadow-md overflow-hidden border border-gray-100">
+        <div className="w-full max-w-fit bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
             {/* Table container with overflow - attach scrollRef */}
             <div
                 ref={scrollRef}
