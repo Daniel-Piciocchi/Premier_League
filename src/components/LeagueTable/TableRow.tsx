@@ -32,7 +32,7 @@ const TableRow: React.FC<TableRowProps> = ({ team, onClubClick }) => {
                 {team.position}
             </div>
 
-            <div className="sticky left-[80px] z-10 bg-inherit px-3 md:px-4 py-3 w-[170px] flex-shrink-0 text-xs md:text-sm flex items-center">
+            <div className="sticky left-[80px] z-10 bg-inherit px-3 md:px-4 py-3 w-[140px] flex-shrink-0 text-xs md:text-sm flex items-center">
                 <button
                     onClick={handleClubClick}
                     className="text-blue-600 hover:text-blue-800 hover:underline font-medium w-full flex items-center justify-start gap-2 transition-colors"
@@ -48,7 +48,9 @@ const TableRow: React.FC<TableRowProps> = ({ team, onClubClick }) => {
                             }}
                         />
                     )}
-                    <span className="truncate leading-none">{team.club}</span>
+                    <span className="whitespace-nowrap leading-none">
+                        {team.club}
+                    </span>
                 </button>
             </div>
 

@@ -15,7 +15,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({ className = '' }) => {
             </div>
 
             <div
-                className="sticky left-[80px] z-30 bg-white text-center px-3 md:px-4 py-3 text-left w-[170px] flex-shrink-0 text-xs"
+                className="sticky left-[80px] z-30 bg-white text-center px-3 md:px-4 py-3 text-left w-[140px] flex-shrink-0 text-xs"
                 title="Club / Team"
             >
                 Team
