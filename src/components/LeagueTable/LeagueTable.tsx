@@ -1,13 +1,12 @@
-// src/components/LeagueTable/LeagueTable.tsx
-
 import { type LeagueTableRow } from '../../data/types'
 import TableHeader from './TableHeader'
-import TableBody from './TableBody'
+import { Z_INDEX } from './constants'
+import TableRow from './TableRow'
 
 interface LeagueTableProps {
     teams: LeagueTableRow[]
     onClubClick?: (slug: string) => void
-    scrollRef?: React.RefObject<HTMLDivElement> // ADD THIS
+    scrollRef?: React.RefObject<HTMLDivElement>
 }
 
 const LeagueTable: React.FC<LeagueTableProps> = ({
@@ -15,20 +14,25 @@ const LeagueTable: React.FC<LeagueTableProps> = ({
     onClubClick,
     scrollRef,
 }) => {
-    // ADD scrollRef here
     return (
         <div className="w-full max-w-fit bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
-            {/* Table container with overflow - attach scrollRef */}
             <div
                 ref={scrollRef}
                 className="overflow-auto max-h-[600px] md:max-h-none custom-scrollbar"
             >
-                {/* Sticky header */}
-                <div className="sticky top-0 z-40 bg-white">
+                <div
+                    className={`sticky top-0 ${Z_INDEX.STICKY_HEADER} bg-white`}
+                >
                     <TableHeader />
                 </div>
 
-                <TableBody teams={teams} onClubClick={onClubClick} />
+                {teams.map((team) => (
+                    <TableRow
+                        key={team.position}
+                        team={team}
+                        onClubClick={onClubClick}
+                    />
+                ))}
             </div>
         </div>
     )

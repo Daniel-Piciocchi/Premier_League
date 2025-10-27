@@ -1,5 +1,3 @@
-// src/components/LoadingScreen.tsx
-
 import { motion } from 'framer-motion'
 
 const LoadingScreen: React.FC = () => {

@@ -1,12 +1,6 @@
-// src/data/mockData.ts
+import { type LeagueTableRow } from './types'
+import { determineTeamStatus, generateClubSlug } from '../utils/teamHelpers'
 
-import {
-    type LeagueTableRow,
-    TeamStatus,
-    type LeagueTableConfig,
-} from './types'
-
-// Real Premier League club badges from Wikimedia Commons
 const CLUB_BADGES: Record<string, string> = {
     Liverpool:
         'https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg',
@@ -47,12 +41,7 @@ const CLUB_BADGES: Record<string, string> = {
 }
 
 const getClubLogo = (clubName: string): string => {
-    return (
-        CLUB_BADGES[clubName] ||
-        `https://ui-avatars.com/api/?name=${encodeURIComponent(
-            clubName
-        )}&background=1e40af&color=fff&size=32&bold=true`
-    )
+    return CLUB_BADGES[clubName]
 }
 
 export const mockLeagueData: LeagueTableRow[] = [
@@ -68,9 +57,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: 36,
         points: 60,
         last5: ['Win', 'Win', 'Win', 'Draw', 'Win'],
-        status: TeamStatus.TOP,
-        isClickable: true,
-        clubSlug: 'liverpool',
         clubLogo: getClubLogo('Liverpool'),
     },
     {
@@ -85,9 +71,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: 29,
         points: 53,
         last5: ['Win', 'Draw', 'Win', 'Win', 'Win'],
-        status: TeamStatus.TOP,
-        isClickable: true,
-        clubSlug: 'arsenal',
         clubLogo: getClubLogo('Arsenal'),
     },
     {
@@ -102,9 +85,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: 12,
         points: 47,
         last5: ['Draw', 'Win', 'Loss', 'Win', 'Loss'],
-        status: TeamStatus.TOP,
-        isClickable: true,
-        clubSlug: 'nottm-forest',
         clubLogo: getClubLogo('Nottm Forest'),
     },
     {
@@ -119,9 +99,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: 17,
         points: 44,
         last5: ['Draw', 'Win', 'Win', 'Loss', 'Win'],
-        status: TeamStatus.TOP,
-        isClickable: true,
-        clubSlug: 'man-city',
         clubLogo: getClubLogo('Man City'),
     },
     {
@@ -136,9 +113,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: 15,
         points: 43,
         last5: ['Draw', 'Win', 'Win', 'Loss', 'Win'],
-        status: TeamStatus.NORMAL,
-        isClickable: true,
-        clubSlug: 'bournemouth',
         clubLogo: getClubLogo('Bournemouth'),
     },
     {
@@ -153,9 +127,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: 13,
         points: 43,
         last5: ['Draw', 'Win', 'Loss', 'Win', 'Loss'],
-        status: TeamStatus.NORMAL,
-        isClickable: true,
-        clubSlug: 'chelsea',
         clubLogo: getClubLogo('Chelsea'),
     },
     {
@@ -170,9 +141,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: 9,
         points: 41,
         last5: ['Win', 'Loss', 'Win', 'Loss', 'Loss'],
-        status: TeamStatus.NORMAL,
-        isClickable: true,
-        clubSlug: 'newcastle',
         clubLogo: getClubLogo('Newcastle'),
     },
     {
@@ -187,9 +155,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: 5,
         points: 39,
         last5: ['Loss', 'Win', 'Loss', 'Win', 'Win'],
-        status: TeamStatus.NORMAL,
-        isClickable: true,
-        clubSlug: 'fulham',
         clubLogo: getClubLogo('Fulham'),
     },
     {
@@ -204,9 +169,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: -3,
         points: 38,
         last5: ['Win', 'Draw', 'Draw', 'Loss', 'Draw'],
-        status: TeamStatus.NORMAL,
-        isClickable: true,
-        clubSlug: 'aston-villa',
         clubLogo: getClubLogo('Aston Villa'),
     },
     {
@@ -221,9 +183,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: 0,
         points: 37,
         last5: ['Win', 'Win', 'Loss', 'Loss', 'Win'],
-        status: TeamStatus.NORMAL,
-        isClickable: true,
-        clubSlug: 'brighton',
         clubLogo: getClubLogo('Brighton'),
     },
     {
@@ -238,9 +197,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: 1,
         points: 34,
         last5: ['Draw', 'Loss', 'Win', 'Loss', 'Win'],
-        status: TeamStatus.NORMAL,
-        isClickable: true,
-        clubSlug: 'brentford',
         clubLogo: getClubLogo('Brentford'),
     },
     {
@@ -255,9 +211,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: 12,
         points: 30,
         last5: ['Loss', 'Loss', 'Loss', 'Win', 'Win'],
-        status: TeamStatus.NORMAL,
-        isClickable: true,
-        clubSlug: 'tottenham',
         clubLogo: getClubLogo('Tottenham'),
     },
     {
@@ -272,9 +225,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: -3,
         points: 30,
         last5: ['Win', 'Win', 'Loss', 'Win', 'Loss'],
-        status: TeamStatus.NORMAL,
-        isClickable: true,
-        clubSlug: 'crystal-palace',
         clubLogo: getClubLogo('Crystal Palace'),
     },
     {
@@ -289,9 +239,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: -4,
         points: 30,
         last5: ['Win', 'Win', 'Win', 'Draw', 'Win'],
-        status: TeamStatus.NORMAL,
-        isClickable: true,
-        clubSlug: 'everton',
         clubLogo: getClubLogo('Everton'),
     },
     {
@@ -306,9 +253,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: -7,
         points: 29,
         last5: ['Win', 'Loss', 'Win', 'Loss', 'Loss'],
-        status: TeamStatus.NORMAL,
-        isClickable: true,
-        clubSlug: 'man-united',
         clubLogo: getClubLogo('Man United'),
     },
     {
@@ -323,9 +267,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: -18,
         points: 27,
         last5: ['Win', 'Loss', 'Draw', 'Loss', 'Loss'],
-        status: TeamStatus.NORMAL,
-        isClickable: true,
-        clubSlug: 'west-ham',
         clubLogo: getClubLogo('West Ham'),
     },
     {
@@ -340,9 +281,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: -19,
         points: 19,
         last5: ['Loss', 'Loss', 'Loss', 'Win', 'Loss'],
-        status: TeamStatus.NORMAL,
-        isClickable: true,
-        clubSlug: 'wolves',
         clubLogo: getClubLogo('Wolves'),
     },
     {
@@ -357,9 +295,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: -27,
         points: 17,
         last5: ['Loss', 'Loss', 'Loss', 'Loss', 'Draw'],
-        status: TeamStatus.RELEGATION,
-        isClickable: true,
-        clubSlug: 'ipswich-town',
         clubLogo: getClubLogo('Ipswich Town'),
     },
     {
@@ -374,9 +309,6 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: -30,
         points: 17,
         last5: ['Loss', 'Loss', 'Win', 'Loss', 'Loss'],
-        status: TeamStatus.RELEGATION,
-        isClickable: true,
-        clubSlug: 'leicester-city',
         clubLogo: getClubLogo('Leicester City'),
     },
     {
@@ -391,15 +323,10 @@ export const mockLeagueData: LeagueTableRow[] = [
         goalDifference: -38,
         points: 9,
         last5: ['Loss', 'Loss', 'Loss', 'Win', 'Loss'],
-        status: TeamStatus.RELEGATION,
-        isClickable: true,
-        clubSlug: 'southampton',
         clubLogo: getClubLogo('Southampton'),
     },
-]
-
-export const defaultTableConfig: LeagueTableConfig = {
-    relegationZoneSize: 3,
-    highlightTopTeam: true,
-    highlightRelegationZone: true,
-}
+].map((team) => ({
+    ...team,
+    status: determineTeamStatus(team.position, 20, 3, 4),
+    clubSlug: generateClubSlug(team.club),
+})) as LeagueTableRow[]

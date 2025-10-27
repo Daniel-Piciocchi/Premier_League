@@ -11,10 +11,11 @@ function App() {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        // Simulate data fetching
+        const LOADING_DURATION = 1500
+
         const timer = setTimeout(() => {
             setIsLoading(false)
-        }, 3000)
+        }, LOADING_DURATION)
 
         return () => clearTimeout(timer)
     }, [])
