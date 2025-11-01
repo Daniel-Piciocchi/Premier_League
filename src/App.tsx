@@ -1,5 +1,3 @@
-// src/App.tsx
-
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
@@ -11,7 +9,7 @@ function App() {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        const LOADING_DURATION = 1500
+        const LOADING_DURATION = 3000
 
         const timer = setTimeout(() => {
             setIsLoading(false)

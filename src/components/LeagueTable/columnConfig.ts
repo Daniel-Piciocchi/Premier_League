@@ -34,7 +34,7 @@ export const COLUMNS: ColumnConfig[] = [
         key: 'matchesPlayed',
         label: 'PL',
         title: 'Matches Played',
-        width: 'w-[120px]',
+        width: 'w-[80px]',
     },
     {
         key: 'wins',
@@ -58,19 +58,19 @@ export const COLUMNS: ColumnConfig[] = [
         key: 'goalsScored',
         label: 'GF',
         title: 'Goals For',
-        width: 'w-[110px]',
+        width: 'w-[80px]',
     },
     {
         key: 'goalsAgainst',
         label: 'GA',
         title: 'Goals Against',
-        width: 'w-[110px]',
+        width: 'w-[80px]',
     },
     {
         key: 'goalDifference',
         label: 'GD',
         title: 'Goal Difference',
-        width: 'w-[120px]',
+        width: 'w-[80px]',
     },
     {
         key: 'points',

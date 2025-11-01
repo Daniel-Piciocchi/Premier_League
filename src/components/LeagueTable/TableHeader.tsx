@@ -11,7 +11,7 @@ const TableHeader: React.FC = () => {
                         column.key === 'position' ? 'ascending' : undefined
                     }
                     className={`
-                        px-3 md:px-4 py-3 text-center flex-shrink-0 text-xs
+                        px-3 md:px-4 py-3 flex-shrink-0 text-xs
                         ${column.width}
                         ${
                             column.sticky
@@ -19,7 +19,7 @@ const TableHeader: React.FC = () => {
                                 : 'bg-white'
                         }
                         ${column.bold ? 'font-bold' : ''}
-                        ${column.key === 'club' ? 'text-left' : ''}
+                        ${column.key === 'club' ? 'text-left' : 'text-center'}
                     `}
                     title={column.title}
                 >

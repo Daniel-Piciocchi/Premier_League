@@ -9,7 +9,6 @@ const LoadingScreen: React.FC = () => {
             className="fixed inset-0 bg-gradient-to-br from-[#E8365D] via-[#3B5EFF] to-[#E8365D] flex items-center justify-center "
         >
             <div className="text-center">
-                {/* Premier League Logo - ORIGINAL COLORS */}
                 <motion.div
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -23,7 +22,6 @@ const LoadingScreen: React.FC = () => {
                     />
                 </motion.div>
 
-                {/* Loading Text */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -34,7 +32,6 @@ const LoadingScreen: React.FC = () => {
                     </h4>
                 </motion.div>
 
-                {/* Animated Dots */}
                 <motion.div
                     className="flex justify-center gap-2 mt-6"
                     initial={{ opacity: 0 }}

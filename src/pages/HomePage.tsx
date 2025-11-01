@@ -1,5 +1,3 @@
-// src/pages/HomePage.tsx
-
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useRef } from 'react'
@@ -37,7 +35,6 @@ const HomePage: React.FC = () => {
         >
             <div className="max-w-7xl mx-auto">
                 <div className="w-full max-w-fit mx-auto">
-                    {/* Header + Legend in one container (mobile + desktop) */}
                     <div className="mb-4 relative rounded-lg overflow-visible">
                         <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-lg"></div>
                         <div className="relative p-4 backdrop-blur rounded-lg shadow-[0_4px_12px_rgba(160,130,255,0.12)]">
@@ -50,7 +47,6 @@ const HomePage: React.FC = () => {
                                 </span>
                             </div>
 
-                            {/* Desktop legend */}
                             <div className="hidden md:flex flex-wrap items-center gap-4">
                                 <div className="flex items-center gap-2">
                                     <span className="h-5 px-2 inline-flex items-center justify-center rounded-full bg-blue-200 text-[11px] font-medium text-blue-900">
@@ -71,7 +67,6 @@ const HomePage: React.FC = () => {
                                 </div>
                             </div>
 
-                            {/* Mobile legend */}
                             <div className="md:hidden flex flex-wrap items-center gap-4">
                                 <button
                                     onClick={scrollToTop}
@@ -100,7 +95,6 @@ const HomePage: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Table */}
                     <LeagueTable
                         teams={mockLeagueData}
                         onClubClick={handleClubClick}

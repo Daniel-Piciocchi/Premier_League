@@ -51,7 +51,7 @@ const TableRow: React.FC<TableRowProps> = ({ team, onClubClick }) => {
                 return (
                     <div
                         key={column.key}
-                        className={`${baseClasses} flex items-center`}
+                        className={`${baseClasses} flex items-center justify-start text-left`}
                     >
                         <button
                             onClick={handleClubClick}
@@ -105,19 +105,10 @@ const TableRow: React.FC<TableRowProps> = ({ team, onClubClick }) => {
         }
     }
 
-    const handleKeyPress = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault()
-            handleClubClick()
-        }
-    }
-
     return (
         <div
             role="row"
-            tabIndex={0}
-            onKeyDown={handleKeyPress}
-            className={`flex min-w-max transition-colors ${getRowBgClasses()} focus:outline-none focus:ring-2 focus:ring-blue-500`}
+            className={`flex min-w-max transition-colors ${getRowBgClasses()}`}
         >
             {COLUMNS.map(renderCell)}
         </div>
