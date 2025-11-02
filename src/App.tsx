@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
-import LoadingScreen from './components/LoadingScreen'
-import HomePage from './pages/HomePage'
+import LoadingScreen from './components/common/LoadingScreen'
+import HomePage from './components/home/Home'
 import ClubPage from './pages/ClubPage'
 
 function App() {

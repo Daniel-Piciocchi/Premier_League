@@ -1,4 +1,4 @@
-import { COLUMNS } from './columnConfig'
+import { COLUMNS } from '@constants/home'
 
 const TableHeader: React.FC = () => {
     return (

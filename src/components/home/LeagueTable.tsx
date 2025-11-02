@@ -1,17 +1,15 @@
 import { type LeagueTableRow } from '../../data/types'
 import TableHeader from './TableHeader'
-import { Z_INDEX } from './constants'
+import { Z_INDEX } from '@constants'
 import TableRow from './TableRow'
 
 interface LeagueTableProps {
     teams: LeagueTableRow[]
-    onClubClick?: (slug: string) => void
     scrollRef?: React.RefObject<HTMLDivElement>
 }
 
 const LeagueTable: React.FC<LeagueTableProps> = ({
     teams,
-    onClubClick,
     scrollRef,
 }) => {
     return (
@@ -36,7 +34,6 @@ const LeagueTable: React.FC<LeagueTableProps> = ({
                         <TableRow
                             key={team.position}
                             team={team}
-                            onClubClick={onClubClick}
                         />
                     ))}
                 </div>

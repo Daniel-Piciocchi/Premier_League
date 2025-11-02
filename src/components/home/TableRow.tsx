@@ -1,14 +1,17 @@
 import { type LeagueTableRow } from '../../data/types'
 import Last5Badge from './Last5Badge'
-import { COLUMNS } from './columnConfig'
 import { formatGoalDifference } from '../../utils/teamHelpers'
+import { COLUMNS } from '@constants/home'
+import { useNavigate } from 'react-router-dom'
+import { clubRoute } from '@constants/common'
 
 interface TableRowProps {
     team: LeagueTableRow
-    onClubClick?: (slug: string) => void
 }
 
-const TableRow: React.FC<TableRowProps> = ({ team, onClubClick }) => {
+const TableRow: React.FC<TableRowProps> = ({ team }) => {
+    const navigate = useNavigate()
+
     const getRowBgClasses = () => {
         switch (team.status) {
             case 'top':
@@ -21,7 +24,9 @@ const TableRow: React.FC<TableRowProps> = ({ team, onClubClick }) => {
     }
 
     const handleClubClick = () => {
-        if (team.clubSlug && onClubClick) onClubClick(team.clubSlug)
+        if (team.clubSlug) {
+            navigate(`${clubRoute}/${team.clubSlug}`)
+        }
     }
 
     const renderCell = (column: (typeof COLUMNS)[0]) => {
