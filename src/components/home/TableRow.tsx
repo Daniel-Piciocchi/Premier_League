@@ -16,6 +16,8 @@ const TableRow: React.FC<TableRowProps> = ({ team }) => {
         switch (team.status) {
             case 'top':
                 return 'bg-blue-50 hover:bg-blue-100'
+            case 'europa':
+                return 'bg-orange-50 hover:bg-orange-100'
             case 'relegation':
                 return 'bg-red-50 hover:bg-red-100'
             default:

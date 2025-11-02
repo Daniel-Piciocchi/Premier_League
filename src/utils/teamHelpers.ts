@@ -11,9 +11,11 @@ export const determineTeamStatus = (
     position: number,
     totalTeams: number,
     relegationZoneSize: number = 3,
-    topZoneSize: number = 4
+    topZoneSize: number = 4,
+    europaPosition: number = 5
 ): TeamStatus => {
     if (position <= topZoneSize) return 'top'
+    if (position === europaPosition) return 'europa'
     if (position > totalTeams - relegationZoneSize) return 'relegation'
     return 'normal'
 }

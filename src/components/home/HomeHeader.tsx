@@ -3,12 +3,14 @@ import React from 'react'
 type Props = {
     season?: string
     onScrollTop: () => void
+    onScrollEuropa: () => void
     onScrollBottom: () => void
 }
 
 const HomeHeader: React.FC<Props> = ({
     season = '2024-2025',
     onScrollTop,
+    onScrollEuropa,
     onScrollBottom,
 }) => {
     return (
@@ -35,6 +37,15 @@ const HomeHeader: React.FC<Props> = ({
                     </div>
 
                     <div className="flex items-center gap-2">
+                        <span className="h-5 px-2 inline-flex items-center justify-center rounded-full bg-orange-200 text-[11px] font-medium text-orange-900">
+                            5th
+                        </span>
+                        <span className="text-sm font-medium text-gray-700">
+                            Europa League
+                        </span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
                         <span className="h-5 px-2 inline-flex items-center justify-center rounded-full bg-red-200 text-[11px] font-medium text-red-900">
                             Bottom 3
                         </span>
@@ -54,6 +65,18 @@ const HomeHeader: React.FC<Props> = ({
                         </span>
                         <span className="text-sm font-medium text-gray-700">
                             Champions League
+                        </span>
+                    </button>
+
+                    <button
+                        onClick={onScrollEuropa}
+                        className="flex items-center gap-2 active:scale-95 transition-transform"
+                    >
+                        <span className="h-5 px-2 inline-flex items-center justify-center rounded-full bg-orange-200 text-[11px] font-medium text-orange-900">
+                            5th
+                        </span>
+                        <span className="text-sm font-medium text-gray-700">
+                            Europa League
                         </span>
                     </button>
 

@@ -1,6 +1,6 @@
 export type MatchResult = 'Win' | 'Draw' | 'Loss'
 
-export type TeamStatus = 'normal' | 'top' | 'relegation'
+export type TeamStatus = 'normal' | 'top' | 'europa' | 'relegation'
 export interface LeagueTableRow {
     position: number
     club: string

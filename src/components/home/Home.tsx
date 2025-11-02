@@ -13,6 +13,18 @@ const Home: React.FC = () => {
         }
     }
 
+    const scrollToEuropa = () => {
+        if (scrollRef.current) {
+            const ROW_HEIGHT = 64
+            const EUROPA_POSITION = 5
+            const targetScroll = (EUROPA_POSITION - 2) * ROW_HEIGHT
+            scrollRef.current.scrollTo({
+                top: targetScroll,
+                behavior: 'smooth',
+            })
+        }
+    }
+
     const scrollToBottom = () => {
         if (scrollRef.current) {
             const maxScroll =
@@ -31,13 +43,11 @@ const Home: React.FC = () => {
             <div className="w-full max-w-fit mx-auto">
                 <HomeHeader
                     onScrollTop={scrollToTop}
+                    onScrollEuropa={scrollToEuropa}
                     onScrollBottom={scrollToBottom}
                 />
 
-                <LeagueTable
-                    teams={mockLeagueData}
-                    scrollRef={scrollRef}
-                />
+                <LeagueTable teams={mockLeagueData} scrollRef={scrollRef} />
             </div>
         </motion.div>
     )
