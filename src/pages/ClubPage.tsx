@@ -1,4 +1,4 @@
-import { Club } from '../components/club'
+import { Club } from '@components/club'
 
 const ClubPage: React.FC = () => {
     return <Club />

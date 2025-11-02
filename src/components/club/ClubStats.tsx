@@ -1,28 +1,24 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { formatGoalDifference } from '../../utils/teamHelpers'
+import { LeagueTableRow } from 'src/data/types'
 
 interface ClubStatsProps {
-    points: number
-    wins: number
-    draws: number
-    losses: number
-    matchesPlayed: number
-    goalsScored: number
-    goalsAgainst: number
-    goalDifference: number
+    club: LeagueTableRow
 }
 
-const ClubStats: React.FC<ClubStatsProps> = ({
-    points,
-    wins,
-    draws,
-    losses,
-    matchesPlayed,
-    goalsScored,
-    goalsAgainst,
-    goalDifference,
-}) => {
+const ClubStats: React.FC<ClubStatsProps> = ({ club }) => {
+    const {
+        points,
+        wins,
+        draws,
+        losses,
+        matchesPlayed,
+        goalsScored,
+        goalsAgainst,
+        goalDifference,
+    } = club
+
     return (
         <motion.div
             initial={{ y: 20, opacity: 0 }}

@@ -18,8 +18,7 @@ A modern, interactive Premier League standings table built with React, TypeScrip
 
 ### Prerequisites
 
--   Node.js 18+
--   npm or yarn
+-   Node.js 22.21.0
 
 ### Installation
 

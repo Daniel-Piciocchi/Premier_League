@@ -1,22 +1,12 @@
-import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { useLoading } from '@hooks/common'
 import { AnimatePresence } from 'framer-motion'
+import { Route, Routes } from 'react-router-dom'
 import LoadingScreen from './components/common/LoadingScreen'
-import HomePage from './components/home/Home'
 import ClubPage from './pages/ClubPage'
+import HomePage from './pages/HomePage'
 
 function App() {
-    const [isLoading, setIsLoading] = useState(true)
-
-    useEffect(() => {
-        const LOADING_DURATION = 3000
-
-        const timer = setTimeout(() => {
-            setIsLoading(false)
-        }, LOADING_DURATION)
-
-        return () => clearTimeout(timer)
-    }, [])
+    const isLoading = useLoading()
 
     return (
         <>

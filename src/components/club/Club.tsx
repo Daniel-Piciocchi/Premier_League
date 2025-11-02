@@ -42,16 +42,7 @@ const Club: React.FC = () => {
                     clubLogo={club.clubLogo}
                 />
 
-                <ClubStats
-                    points={club.points}
-                    wins={club.wins}
-                    draws={club.draws}
-                    losses={club.losses}
-                    matchesPlayed={club.matchesPlayed}
-                    goalsScored={club.goalsScored}
-                    goalsAgainst={club.goalsAgainst}
-                    goalDifference={club.goalDifference}
-                />
+                <ClubStats club={club} />
             </div>
         </motion.div>
     )
