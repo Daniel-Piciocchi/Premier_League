@@ -7,7 +7,7 @@ A modern, interactive Premier League standings table built with React, TypeScrip
 -   **Live Standings Table** - Real-time Premier League standings with all statistics
 -   **Sticky Columns** - Position and Team columns stay fixed during horizontal scroll
 -   **Sticky Header** - Column headers remain visible during vertical scroll
--   **Color-Coded Rows** - Visual indicators for Champions League spots (top 4) and relegation zone (bottom 3)
+-   **Color-Coded Rows** - Visual indicators for Champions League spots (top 4), Europa League (5th), and relegation zone (bottom 3)
 -   **Team Detail Pages** - Click any team to view detailed statistics
 -   **Fully Responsive** - Optimized for mobile, tablet, and desktop
 -   **Smooth Animations** - Powered by Framer Motion
@@ -52,34 +52,57 @@ Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 ```
 src/
 ├── components/
-│   └── LeagueTable/
-│       ├── columnConfig.ts      # Column definitions (single source of truth)
-│       ├── constants.ts         # Z-index values
-│       ├── Last5Badge.tsx       # Match result badges
-│       ├── LeagueTable.tsx      # Main table component
-│       ├── TableHeader.tsx      # Sticky header
-│       └── TableRow.tsx         # Individual team rows
+│   ├── club/
+│   │   ├── Club.tsx           # Main club detail component
+│   │   ├── ClubHeader.tsx     # Club page header with logo/position
+│   │   ├── ClubStats.tsx      # Club statistics display
+│   │   └── index.ts           # Barrel exports
+│   ├── common/
+│   │   └── LoadingScreen.tsx  # Initial loading animation
+│   └── home/
+│       ├── Home.tsx           # Main home page component
+│       ├── HomeHeader.tsx     # Header with season/legend/scroll buttons
+│       ├── LeagueTable.tsx    # Main table container
+│       ├── TableHeader.tsx    # Sticky table header
+│       ├── TableRow.tsx       # Individual team rows
+│       ├── Last5Badge.tsx     # W/D/L badges for last 5 matches
+│       └── index.ts           # Barrel exports
+├── constants/
+│   ├── club.ts                # Club-specific constants (colors)
+│   ├── common.ts              # Shared constants (routes, z-index)
+│   ├── home.ts                # Home page constants (column config)
+│   └── index.ts               # Barrel exports
 ├── data/
-│   ├── mockData.ts             # Premier League team data
-│   └── types.ts                # TypeScript interfaces
+│   ├── mockData.ts            # Premier League team data
+│   └── types.ts               # TypeScript interfaces
+├── hooks/
+│   ├── common.ts              # Custom hooks (useLoading)
+│   └── index.ts               # Barrel exports
 ├── pages/
-│   ├── ClubPage.tsx            # Team detail page
-│   └── HomePage.tsx            # Main standings page
+│   ├── ClubPage.tsx           # Club detail page wrapper
+│   └── HomePage.tsx           # Home page wrapper
 ├── utils/
-│   └── teamHelpers.ts          # Utility functions
-└── App.tsx                     # Root component
+│   └── teamHelpers.ts         # Utility functions
+└── App.tsx                    # Root component with routing
 ```
 
 ## Design Decisions
 
+### Barrel Exports Pattern
+
+-   Each folder has an `index.ts` for clean imports
+-   Only public components are exported
+-   Internal components stay private to their folders
+
 ### Dynamic Data Generation
 
--   Team status (top/normal/relegation) calculated automatically based on position
+-   Team status (top/europa/relegation) calculated automatically based on position
 -   URL slugs generated dynamically from team names
 -   No hardcoded values - single source of truth pattern
 
 ### Component Architecture
 
+-   Separation of concerns: pages vs components vs constants
 -   Column configuration shared between header and rows
 -   DRY principles - eliminated duplicate code
 -   Type-safe with TypeScript interfaces
@@ -87,7 +110,8 @@ src/
 ### Responsive Design
 
 -   Horizontal scrolling for wide tables on mobile
--   Vertical scrolling disabled on larger screens (iPad+) where all rows fit
+-   Vertical scrolling with sticky header
+-   Mobile-friendly scroll buttons for quick navigation
 -   Sticky positioning works on both axes
 
 ### Accessibility
@@ -117,13 +141,14 @@ Edit `src/data/mockData.ts` to modify team statistics.
 
 ### Adjust Colors
 
--   Top 4 highlighting: Modify in `TableRow.tsx` (`'top'` status)
--   Relegation zone: Modify in `TableRow.tsx` (`'relegation'` status)
--   Team colors: Update `CLUB_COLORS` in `ClubPage.tsx`
+-   Top 4 highlighting: Modify in `components/home/TableRow.tsx` (`'top'` status)
+-   Europa League highlighting: Modify in `components/home/TableRow.tsx` (`'europa'` status)
+-   Relegation zone highlighting: Modify in `components/home/TableRow.tsx` (`'relegation'` status)
+-   Team colors: Update `CLUB_COLORS` in `constants/club.ts`
 
 ### Column Configuration
 
-Add/remove columns in `src/components/LeagueTable/columnConfig.ts`.
+Add/remove columns in `constants/home.ts` (`COLUMNS` array).
 
 ## Available Scripts
 

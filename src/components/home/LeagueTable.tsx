@@ -8,10 +8,7 @@ interface LeagueTableProps {
     scrollRef?: React.RefObject<HTMLDivElement>
 }
 
-const LeagueTable: React.FC<LeagueTableProps> = ({
-    teams,
-    scrollRef,
-}) => {
+const LeagueTable: React.FC<LeagueTableProps> = ({ teams, scrollRef }) => {
     return (
         <div
             className="w-full max-w-fit bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100"
@@ -31,10 +28,7 @@ const LeagueTable: React.FC<LeagueTableProps> = ({
 
                 <div role="rowgroup">
                     {teams.map((team) => (
-                        <TableRow
-                            key={team.position}
-                            team={team}
-                        />
+                        <TableRow key={team.position} team={team} />
                     ))}
                 </div>
             </div>
